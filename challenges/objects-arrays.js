@@ -84,16 +84,9 @@ zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":
 {"animal_name":"Australian pelican","population":5,"scientific_name":"Pelecanus conspicillatus","state":"West Virginia"}];
 
 
-
-const universities = [];
-const contactInfo = [];
-const uni = [];
-const animalNames = [];
-let lowerCase = [];
-let lowerPopulation = [];
-let populationTotal = 0;
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-const populations = [];
+/**********/
+//NOTE: ALL CODE BELOW.  I attempted to make it pretty, but it doesnt seem to work for console log all the time.
+/**********/
 
 
 /* Request 1: Create a new array called universities that contains all the universities in the graduates array.  
@@ -141,71 +134,95 @@ The zoos need to know their total animal population across the United States.  F
 
 */
 
-function arraysTest() {
+function uniGrabber() {
+  console.log("\n--------------------------------------");
+  console.log('Create a new array called universities that contains all the universities in the graduates array.\n');
+  const universities = [];
   graduates.forEach( ele => universities.push(ele.university));
-
+  return universities;
+}
+function contactInfoGrabber() {
+  console.log("\n--------------------------------------");
+  console.log('Create a new array called contactInfo that contains both first name and email of each student. \n');
+  const contactInfo = [];
   graduates.forEach(ele => contactInfo.push(`${ele.first_name} ${ele.email}`));
-
+  return contactInfo;
+}
+  
+function containsUni() {
+  console.log("\n--------------------------------------");
+  console.log('Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all.\n');
+  const uni = [];
   graduates.forEach(ele => {
     if(ele.university.includes('Uni')) {
       uni.push(ele.university);
     }
   });
+  return uni;
 }
-function arraysAdvanced() {
-  zooAnimals.forEach(ele => animalNames.push(`Name: ${ele.animal_name}, Scientific: ${ele.scientific_name}`));
 
-  lowerCase = zooAnimals.map(ele => ele.animal_name.toLowerCase()); 
+function namesGrabber() {
+  console.log("\n--------------------------------------");
+  console.log('Return an array with only the animal and scientific names in it.\n');
+  const animalNames = [];
+  zooAnimals.forEach(ele => animalNames.push(`Name: ${ele.animal_name}, Scientific: ${ele.scientific_name}`));
+  return animalNames;
+}
+
+function lowerCaseNames() {
+  console.log("\n--------------------------------------");
+  console.log('Create a new array named lowerCase and map over each name to convert them all to lower case\n');
+  const lowerCase = zooAnimals.map(ele => ele.animal_name.toLowerCase()); 
+  return lowerCase;
+}
+
+function populationFilter() {
+  console.log("\n--------------------------------------");
+  console.log('Find out which animals have a population less than 5.\n');
+  const lowerPopulation = zooAnimals.filter(ele => ele.population <5);
+  return lowerPopulation;
+}
   
-  lowerPopulation = zooAnimals.filter(ele => ele.population <5);
   
+function popTotal() {
+  console.log("\n--------------------------------------");
+  console.log('Find the total population from all the zoos using the .reduce() method.\n');
+  let populationTotal = 0;
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  const populations = [];
   zooAnimals.forEach( ele => populations.push(ele.population));
   populationTotal = populations.reduce(reducer);
+  return populationTotal;
 }
 
-
-//logging section below
 
 async function loggerArray() {
   console.log("\n*****START ARRAYS*****");
-  console.log("\n--------------------------------------");
-  console.log('Create a new array called universities that contains all the universities in the graduates array.\n');
-  await console.log(universities);
   
-  console.log("\n--------------------------------------");
-  console.log('Create a new array called contactInfo that contains both first name and email of each student. \n');
-  await console.log(contactInfo);
+  await console.log(uniGrabber());
   
-  console.log("\n--------------------------------------");
-  console.log('Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all.\n');
-  await console.log(uni);
+  
+  await console.log(contactInfoGrabber());
+  
+  
+  await console.log(containsUni());
 
 }
 async function loggerAdvanced() {
-  console.log("\n--------------------------------------");
-  console.log('Return an array with only the animal and scientific names in it.\n');
-  await console.log(animalNames);
   
-  console.log("\n--------------------------------------");
-  console.log('Create a new array named lowerCase and map over each name to convert them all to lower case\n');
-  await console.log(lowerCase); 
+  await console.log(namesGrabber());
   
-  console.log("\n--------------------------------------");
-  console.log('Find out which animals have a population less than 5.\n');
-  await console.log(JSON.stringify(lowerPopulation));
   
-  console.log("\n--------------------------------------");
-  console.log('Find the total population from all the zoos using the .reduce() method.\n');
-  await console.log(populationTotal);
+  await console.log(lowerCaseNames()); 
+  
+  
+  await console.log(JSON.stringify(populationFilter()));
+  
+  
+  await console.log(popTotal());
 }
   
 
 
-async function test() {
-  await arraysTest();
-  await arraysAdvanced();
-  await loggerArray();
-  await loggerAdvanced();
-}
-
-test();
+loggerArray();
+loggerAdvanced();
