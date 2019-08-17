@@ -6,7 +6,13 @@
   * The last parameter accepts a callback 
   * In the body of the function return the callback with the two parameters that you created
 */
+function consume(a, b, cb) {
+  return cb(a,b);
 
+}
+let add = (a,b) => console.log(a+b);
+let multiply = (a,b) =>console.log(a*b);
+let greeting = (a,b) => console.log(`Hello ${a} ${b}, nice to meet you!`);
 
 /* Step 2: Create several functions to callback with consume();
   * Create a function named add that returns the sum of two numbers
@@ -16,16 +22,16 @@
 
 
 /* Step 3: Check your work by un-commenting the following calls to consume(): */
-// consume(2,2,add); // 4
-// consume(10,16,multiply); // 160
-// consume("Mary","Poppins", greeting); // Hello Mary Poppins, nice to meet you!
+consume(2,2,add); // 4
+consume(10,16,multiply); // 160
+consume("Mary","Poppins", greeting); // Hello Mary Poppins, nice to meet you!
 
 
 // ==== Closures ==== 
 
 // Explain in your own words why `nestedfunction()` can access the variable `internal`.
 
-// Explanation: 
+// Explanation: the nestedFunction() function is contained inside myFunction() function along with 'const internal', meaning they are within the same scope, or bound within the same function. if nestedFunction were not nested within myFunction, then it could not see the declared internal const, but it could see the global const external.
 
 
 const external = "I'm outside the function";
