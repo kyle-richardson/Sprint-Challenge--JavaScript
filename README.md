@@ -30,13 +30,27 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. Describe the biggest difference between `.forEach` & `.map`.
 
+    .forEach iterates over the array, element by element, but does not return anything.  instead, you are able to do whatever you would like at each element. 
+    .map iterates over the entire array as well, but instead returns something for each element.  This is a crucial difference in regards to creating new arrays from existing arrays.  It can all be done in one statement for .map, wheras you can accomplish the same with forEach, but you need to .push to another array object.
+
 2. What is the difference between a function and a method?
+
+    A method is a function with a defined scope for 'this'.  Meaning, a method is a function that is specifically assigned to an object.  This could mean that a method is a function within a function, since functions are objects in javascript.
 
 3. What is closure?
 
+    Closure is the way in javascript that variables obtain and retain their scope for use and visibility.  This idea, combined with the idea that functions can exist within other functions, or be assigned as parameters in javascript, opens up possibilities where variables can retain memory of what their value is through multiple function calls, even if the program has moved on to the next lines of code beyond the function where it is instantiated.
+
 4. Describe the four rules of the 'this' keyword.
 
+    1) window binding - global scope is not assigned to an object, so it uses the browser window as 'this'
+    2) implicit binding - dot notation means 'this' will be assigned to the object preceding the dot.
+    3) new binding - so named because you have to use the 'new' syntax to create an object from a constructor function.  when you create an object in this way, 'this' is assigned to the newly created object.
+    4) explicit binding - similar to in-line style for css/html, you can override what 'this' points to by using .call or .apply functions in javascript.  
+
 5. Why do we need super() in an extended class?
+    
+    super allows the current class to look 'up' to the parent class to grab its attributes before assigning its own unique properties.  It allows for less code, as you don't have to assign each attribute anew for each extended class, nor use Object.create(this, Class) syntax to bring over attributes.
 
 ## Project Set up
 
